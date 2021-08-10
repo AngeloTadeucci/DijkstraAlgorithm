@@ -1,15 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Authors>agabani</Authors>
-    <Company>agabani</Company>
-    <PackageLicenseUrl>https://github.com/agabani/DijkstraAlgorithm/blob/master/LICENSE</PackageLicenseUrl>
-    <Copyright>Copyright 2017</Copyright>
-    <PackageProjectUrl>https://github.com/agabani/DijkstraAlgorithm</PackageProjectUrl>
+    <Authors>agabani, Tadeucci</Authors>
+    <PackageLicenseUrl>https://github.com/AngeloTadeucci/DijkstraAlgorithm/blob/master/LICENSE</PackageLicenseUrl>
+    <Copyright>Copyright 2021</Copyright>
+    <PackageProjectUrl>https://github.com/AngeloTadeucci/DijkstraAlgorithm</PackageProjectUrl>
     <PackageTags>Dijkstra Algorithm</PackageTags>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
 </Project>

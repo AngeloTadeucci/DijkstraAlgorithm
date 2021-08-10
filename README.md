@@ -1,6 +1,8 @@
-# Dijkstra Algorithm
+# This fork adds bi directional links
 
-![Build status](https://ci.appveyor.com/api/projects/status/32pxjo4lkh5h3peq?svg=true)
+Check the original reposity here: <https://github.com/agabani/DijkstraAlgorithm>
+
+## Dijkstra Algorithm
 
 > Dijkstra's algorithm is an algorithm for finding the shortest paths between nodes in a graph. [wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
 
@@ -8,7 +10,7 @@
 
 | Nuget Package Name | Nuget Package URL                                                  |
 |--------------------|--------------------------------------------------------------------|
-| DijkstraAlgorithm  | https://www.myget.org/feed/agabani/package/nuget/DijkstraAlgorithm |
+| DijkstraAlgorithm  | <https://www.nuget.org/packages/DijkstraAlgorithm/> |
 
 ## Example Usage
 
@@ -24,28 +26,20 @@ builder
     .AddNode("E");
 
 builder
-    .AddLink("A", "B", 6)
-    .AddLink("A", "D", 1);
+    .AddBidirectionalLink("A", "B", 6)
+    .AddBidirectionalLink("A", "D", 1);
 
 builder
-    .AddLink("B", "A", 6)
-    .AddLink("B", "C", 5)
-    .AddLink("B", "D", 2)
-    .AddLink("B", "E", 2);
+    .AddBidirectionalLink("B", "C", 5)
+    .AddBidirectionalLink("B", "D", 2)
+    .AddBidirectionalLink("B", "E", 2);
 
 builder
-    .AddLink("C", "B", 5)
-    .AddLink("C", "E", 5);
+    .AddBidirectionalLink("C", "E", 5);
 
+// Example of uni directional links
 builder
-    .AddLink("D", "A", 1)
-    .AddLink("D", "B", 2)
     .AddLink("D", "E", 1);
-
-builder
-    .AddLink("E", "B", 2)
-    .AddLink("E", "C", 5)
-    .AddLink("E", "D", 1);
 
 var graph = builder.Build();
 
@@ -60,20 +54,20 @@ var path = pathFinder.FindShortestPath(
     graph.Nodes.Single(node => node.Id == destination));
 
 // Assert results
-Assert.Equal(path.Origin.Id, origin);
-Assert.Equal(path.Destination.Id, destination);
-Assert.Equal(path.Segments.Count, 3);
-Assert.Equal(path.Segments.Sum(s => s.Weight), 7);
+Assert.Equal(origin, path.Origin.Id);
+Assert.Equal(destination, path.Destination.Id);
+Assert.Equal(3, path.Segments.Count);
+Assert.Equal(7, path.Segments.Sum(s => s.Weight));
 
-Assert.Equal(path.Segments.ElementAt(0).Origin.Id, "A");
-Assert.Equal(path.Segments.ElementAt(0).Weight, 1);
-Assert.Equal(path.Segments.ElementAt(0).Destination.Id, "D");
+Assert.Equal("A", path.Segments.ElementAt(0).Origin.Id);
+Assert.Equal(1, path.Segments.ElementAt(0).Weight);
+Assert.Equal("D", path.Segments.ElementAt(0).Destination.Id);
 
-Assert.Equal(path.Segments.ElementAt(1).Origin.Id, "D");
-Assert.Equal(path.Segments.ElementAt(1).Weight, 1);
-Assert.Equal(path.Segments.ElementAt(1).Destination.Id, "E");
+Assert.Equal("D", path.Segments.ElementAt(1).Origin.Id);
+Assert.Equal(1, path.Segments.ElementAt(1).Weight);
+Assert.Equal("E", path.Segments.ElementAt(1).Destination.Id);
 
-Assert.Equal(path.Segments.ElementAt(2).Origin.Id, "E");
-Assert.Equal(path.Segments.ElementAt(2).Weight, 5);
-Assert.Equal(path.Segments.ElementAt(2).Destination.Id, "C");
+Assert.Equal("E", path.Segments.ElementAt(2).Origin.Id);
+Assert.Equal(5, path.Segments.ElementAt(2).Weight);
+Assert.Equal("C", path.Segments.ElementAt(2).Destination.Id);
 ```

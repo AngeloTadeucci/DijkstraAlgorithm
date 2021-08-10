@@ -165,9 +165,9 @@ namespace DijkstraAlgorithm.Tests
                 _graph.Nodes.Single(node => node.Id == origin),
                 _graph.Nodes.Single(node => node.Id == destination));
 
-            Assert.Equal(path.Origin.Id, origin);
-            Assert.Equal(path.Destination.Id, destination);
-            Assert.Equal(path.Segments.Sum(s => s.Weight), weight);
+            Assert.Equal(origin, path.Origin.Id);
+            Assert.Equal(destination, path.Destination.Id);
+            Assert.Equal(weight, path.Segments.Sum(s => s.Weight));
         }
     }
 }

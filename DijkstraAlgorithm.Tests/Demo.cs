@@ -57,22 +57,22 @@ namespace DijkstraAlgorithm.Tests
                 graph.Nodes.Single(node => node.Id == destination));
 
             // Assert results
-            Assert.Equal(path.Origin.Id, origin);
-            Assert.Equal(path.Destination.Id, destination);
-            Assert.Equal(path.Segments.Count, 3);
-            Assert.Equal(path.Segments.Sum(s => s.Weight), 7);
+            Assert.Equal(origin, path.Origin.Id);
+            Assert.Equal(destination, path.Destination.Id);
+            Assert.Equal(3, path.Segments.Count);
+            Assert.Equal(7, path.Segments.Sum(s => s.Weight));
 
-            Assert.Equal(path.Segments.ElementAt(0).Origin.Id, "A");
-            Assert.Equal(path.Segments.ElementAt(0).Weight, 1);
-            Assert.Equal(path.Segments.ElementAt(0).Destination.Id, "D");
+            Assert.Equal("A", path.Segments.ElementAt(0).Origin.Id);
+            Assert.Equal(1, path.Segments.ElementAt(0).Weight);
+            Assert.Equal("D", path.Segments.ElementAt(0).Destination.Id);
 
-            Assert.Equal(path.Segments.ElementAt(1).Origin.Id, "D");
-            Assert.Equal(path.Segments.ElementAt(1).Weight, 1);
-            Assert.Equal(path.Segments.ElementAt(1).Destination.Id, "E");
+            Assert.Equal("D", path.Segments.ElementAt(1).Origin.Id);
+            Assert.Equal(1, path.Segments.ElementAt(1).Weight);
+            Assert.Equal("E", path.Segments.ElementAt(1).Destination.Id);
 
-            Assert.Equal(path.Segments.ElementAt(2).Origin.Id, "E");
-            Assert.Equal(path.Segments.ElementAt(2).Weight, 5);
-            Assert.Equal(path.Segments.ElementAt(2).Destination.Id, "C");
+            Assert.Equal("E", path.Segments.ElementAt(2).Origin.Id);
+            Assert.Equal(5, path.Segments.ElementAt(2).Weight);
+            Assert.Equal("C", path.Segments.ElementAt(2).Destination.Id);
         }
     }
 }

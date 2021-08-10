@@ -22,28 +22,19 @@ namespace DijkstraAlgorithm.Tests
                 .AddNode("E");
 
             builder
-                .AddLink("A", "B", 6)
-                .AddLink("A", "D", 1);
+                .AddBidirectionalLink("A", "B", 6)
+                .AddBidirectionalLink("A", "D", 1);
 
             builder
-                .AddLink("B", "A", 6)
-                .AddLink("B", "C", 5)
-                .AddLink("B", "D", 2)
-                .AddLink("B", "E", 2);
+                .AddBidirectionalLink("B", "C", 5)
+                .AddBidirectionalLink("B", "D", 2)
+                .AddBidirectionalLink("B", "E", 2);
 
             builder
-                .AddLink("C", "B", 5)
-                .AddLink("C", "E", 5);
+                .AddBidirectionalLink("C", "E", 5);
 
             builder
-                .AddLink("D", "A", 1)
-                .AddLink("D", "B", 2)
-                .AddLink("D", "E", 1);
-
-            builder
-                .AddLink("E", "B", 2)
-                .AddLink("E", "C", 5)
-                .AddLink("E", "D", 1);
+                .AddBidirectionalLink("D", "E", 1);
 
             _graph = builder.Build();
 
@@ -77,9 +68,9 @@ namespace DijkstraAlgorithm.Tests
                 _graph.Nodes.Single(node => node.Id == origin),
                 _graph.Nodes.Single(node => node.Id == destination));
 
-            Assert.Equal(path.Origin.Id, origin);
-            Assert.Equal(path.Destination.Id, destination);
-            Assert.Equal(path.Segments.Sum(s => s.Weight), weight);
+            Assert.Equal(origin, path.Origin.Id);
+            Assert.Equal(destination, path.Destination.Id);
+            Assert.Equal(weight, path.Segments.Sum(s => s.Weight));
         }
     }
 }

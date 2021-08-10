@@ -37,6 +37,13 @@ namespace DijkstraAlgorithm.Graphing
             return this;
         }
 
+        public GraphBuilder AddBidirectionalLink(string sourceId, string destinationId, double weight)
+        {
+            AddLink(sourceId, destinationId, weight);
+            AddLink(destinationId, sourceId, weight);
+            return this;
+        }
+
         public Graph Build()
         {
             var nodes = _nodes.ToDictionary(node => node.Key, node => node.Value.Invoke());
